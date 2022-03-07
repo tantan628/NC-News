@@ -1,8 +1,6 @@
 import { Card, Grid, Typography } from "@mui/material"
 
 const ArticleCard = (article) => {
-    console.log(article)
-
     return (
         <Grid item xs={12} key={article.article_id}>
             <Card raised={true}>

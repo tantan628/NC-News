@@ -4,16 +4,17 @@ import * as api from '../api';
 
 import ArticleCard from './ArticleCard';
 
-const ArticlesList = () => {
+const ArticlesList = ({ filterByTopic }) => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        async function getData() {
-            const articlesData = await api.getArticles();
+        const getData = async () => {
+            const articlesData = await api.getArticles(filterByTopic);
             setArticles(articlesData);
         }
-        getData()
-    }, []);
+        getData();
+    }, [filterByTopic]);
+
 
     return (
         <Box className="articles-list-container">
