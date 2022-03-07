@@ -5,7 +5,7 @@ const ArticleCard = (article) => {
 
     return (
         <Grid item xs={12} key={article.article_id}>
-            <Card raised="true">
+            <Card raised={true}>
                 <Typography color="text.secondary" variant="overline">
                     {article.topic}
                 </Typography>
