@@ -1,13 +1,24 @@
-import { Typography } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, IconButton } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 
     return (
-        <section>
-            <Typography variant="h1" className="mainTitle">
+        <Box>
+            <AppBar position="static">
+            <Toolbar>
+                <Link to="/">
+                <IconButton size="large" aria-label="home">
+                    <HomeIcon />
+                </IconButton>
+                </Link>
+                <Typography variant="h1" className="mainTitle">
                 Tanis' News App
-            </Typography>
-        </section>
+                </Typography>
+            </Toolbar>
+            </AppBar>
+        </Box>
     )
 };
 

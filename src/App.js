@@ -5,6 +5,7 @@ import UserLogIn from './components/UserLogIn';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ErrorPage from './components/ErrorPage';
+import ArticlePage from './components/ArticlePage';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/topics/:topicSlug" element={<Home />} />
           <Route path="*" element={<ErrorPage />} />
+          <Route path="/articles/:articleId" element={<ArticlePage />} />
         </Routes>
         <Footer />
       </div>

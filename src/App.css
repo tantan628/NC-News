@@ -21,6 +21,10 @@
   margin-right: auto;
 }
 
+.article-card-linking {
+  text-decoration: none;
+}
+
 .modal-form-container {
   position: absolute;
   top: 50%;
