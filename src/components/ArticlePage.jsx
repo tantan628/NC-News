@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import * as api from '../api';
@@ -19,13 +19,23 @@ const ArticlePage = () => {
     console.log(article)
 
     return (
-        <section>
-            <Typography variant="caption">{article.topic[0].toUpperCase() + article.topic.slice(1)}</Typography>
-            <Typography variant="h2">{article.title}</Typography>
-            <Typography variant="subtitle1">By: {article.author}</Typography>
-            <Typography variant="subtitle1">Published: {publishedDate}</Typography>
-            <Typography variant="body1">{article.body}</Typography>
-        </section>
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <Typography variant="caption">{article.topic}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="h2">{article.title}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+                <Typography variant="subtitle1">By: {article.author}</Typography>
+            </Grid>
+            <Grid item xs={6}>
+                <Typography variant="subtitle1">Published: {publishedDate}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="body1">{article.body}</Typography>
+            </Grid>
+        </Grid>
     )
 };
 
