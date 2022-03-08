@@ -2,8 +2,37 @@
   text-align: center;
 }
 
+.topics-selector-container {
+  width: 20%;
+  max-width: 150px;
+  min-width: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1%;
+}
+
+.topics-selector {
+  width: 100%;
+}
+
 .articles-list-container {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.modal-form-container {
+  position: absolute;
+  top: 50%;
+  width: 70%;
+  left: 15%;
+  background-color: lightgray;
+  border: 2px solid #000;
+  text-align: center;
+}
+
+.error-message-container {
+  border: 4px solid darkred;
+  width: 90%;
+  margin: 10% auto 10% auto;
 }
