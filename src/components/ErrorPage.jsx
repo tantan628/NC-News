@@ -12,7 +12,7 @@ const ErrorPage = () => {
             <Typography variant="h2">Error 404</Typography>
             <Typography variant="body">It looks like that URL doesn't exist, sorry!</Typography>
             <br />
-            <Button variant="contained" onClick={backToHome}>Back to Safety</Button>
+            <Button variant="contained" onClick={backToHome} color="success">Back to Safety</Button>
         </section>
     )
 };
