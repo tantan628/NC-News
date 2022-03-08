@@ -1,11 +1,10 @@
 import './App.css';
 import '@fontsource/roboto/300.css';
-import Home from './components/Home';
-import UserLogIn from './components/UserLogIn';
+import Home from './components/home-components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ErrorPage from './components/ErrorPage';
-import ArticlePage from './components/ArticlePage';
+import ArticlePage from './components/article-page-components/ArticlePage';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
