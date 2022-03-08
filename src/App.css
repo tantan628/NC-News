@@ -44,3 +44,11 @@
   width: 90%;
   margin: 10% auto 10% auto;
 }
+
+.vote-down-icon {
+  border-radius: 25px;
+}
+
+.vote-up-icon {
+  border-radius: 25px;
+}
