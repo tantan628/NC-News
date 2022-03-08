@@ -17,7 +17,7 @@ const UserLogIn = () => {
 
     return (
         <section>
-            <Button variant="contained" onClick={handleOpen}>Log In</Button>
+            <Button color="inherit" variant="outlined" onClick={handleOpen}>Log In</Button>
             <Typography variant="subtitle1">Current User: {user}</Typography>
             <Modal open={open} onClose={handleClose}>
                 <Box className="modal-form-container">
