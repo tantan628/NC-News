@@ -1,15 +1,9 @@
-import Footer from './Footer';
-import Header from './Header';
 import MainSection from './MainSection';
-import UserLogIn from './UserLogIn';
 
-const Home = ({ topics, filterByTopic }) => {
+const Home = () => {
     return (
         <div className="App">
-            <UserLogIn />
-            <Header />
-            <MainSection topics={topics} filterByTopic={filterByTopic} />
-            <Footer />
+            <MainSection />
         </div>
     )
 };

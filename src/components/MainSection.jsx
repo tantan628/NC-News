@@ -1,21 +1,32 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
+import * as api from '../api';
 
 import ArticlesList from "./ArticlesList";
 
-const MainSection = ({ topics, filterByTopic }) => {
-    const [chosenTopic, setChosenTopic] = useState(filterByTopic);
+const MainSection = () => {
+    const { topicSlug } = useParams();
+    const [chosenTopic, setChosenTopic] = useState(topicSlug);
+    const [topics, setTopics] = useState([]);
+
+    useEffect(() => {
+        const getData = async () => {
+            const topicsData = await api.getTopics();
+            setTopics(topicsData);
+        }
+        getData();
+    }, []);
 
     const navigate = useNavigate();
-
     const handleTopicChange = (event) => {
         const newTopic = event.target.value
-        setChosenTopic(newTopic);
         if(newTopic === "All Topics") {
+            setChosenTopic(null)
             navigate('/')
         } else {
-            navigate(`/${newTopic}`)
+            setChosenTopic(newTopic);
+            navigate(`/topics/${newTopic}`)
         }
     };
 
@@ -24,7 +35,7 @@ const MainSection = ({ topics, filterByTopic }) => {
             <Box className="topics-selector-container">
                 <FormControl className="topics-selector">
                     <InputLabel id="topics-selection-label">Topic</InputLabel>
-                    <Select labelId="topics-selection-label" value={chosenTopic} label="Topics" onChange={handleTopicChange}>
+                    <Select labelId="topics-selection-label" value={chosenTopic || 'All Topics'} label="Topics" onChange={handleTopicChange}>
                         <MenuItem value="All Topics">All Topics</MenuItem>
                         {topics.map((topic) => {
                             return (
@@ -34,7 +45,7 @@ const MainSection = ({ topics, filterByTopic }) => {
                     </Select>
                 </FormControl>
             </Box>
-            <ArticlesList filterByTopic={filterByTopic} />
+            <ArticlesList chosenTopic={chosenTopic} />
         </section>
     )
 };
