@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import * as api from '../../api';
 import ArticleVoting from "./ArticleVoting";
+import CommentsList from "./CommentsList";
 
 const ArticlePage = () => {
     const [article, setArticle] = useState({});
@@ -41,9 +42,17 @@ const ArticlePage = () => {
             <Grid item xs={12}>
                 <Typography variant="subtitle1">{message}</Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={1}></Grid>
+            <Grid item xs={10}>
                 <Typography variant="body1">{article.body}</Typography>
             </Grid>
+            <Grid item xs={1}></Grid>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={8}>
+                <Typography variant="h6">Comments</Typography>
+                <CommentsList articleId={article.article_id}/>
+            </Grid>
+            <Grid item xs={2}></Grid>
         </Grid>
     )
 };
