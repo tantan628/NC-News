@@ -1,11 +1,11 @@
 import { Box, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
-import * as api from '../api';
+import * as api from '../../api';
 
 import ArticlesList from "./ArticlesList";
 
-const MainSection = () => {
+const HomeSearch = () => {
     const { topicSlug } = useParams();
     const [chosenTopic, setChosenTopic] = useState(topicSlug);
     const [topics, setTopics] = useState([]);
@@ -50,4 +50,4 @@ const MainSection = () => {
     )
 };
 
-export default MainSection;
+export default HomeSearch;

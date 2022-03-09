@@ -11,7 +11,9 @@ const UserLogIn = () => {
     const logInAs = (event) => {
         event.preventDefault()
         const enteredUsername = event.target[0].value;
-        setUser(enteredUsername);
+        setUser(() => {
+            return enteredUsername;
+        });
         handleClose()
     }
 
@@ -23,7 +25,7 @@ const UserLogIn = () => {
                 <Box className="modal-form-container">
                     <form onSubmit={logInAs}>
                         <InputLabel id="username-input">Username:</InputLabel>
-                        <TextField variant="outlined" label="Username" labelId="username-input" />
+                        <TextField variant="outlined" label="Username" labelid="username-input" />
                         <br />
                         <Button variant="contained" type="submit">Submit</Button>
                     </form>
