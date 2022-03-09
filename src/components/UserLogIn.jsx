@@ -1,20 +1,38 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from '../contexts/UserContext';
 import { Box, Button, InputLabel, Modal, TextField, Typography } from '@mui/material';
+import * as api from '../api';
 
 const UserLogIn = () => {
+    const [users, setUsers] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
     const { user, setUser } = useContext(UserContext);
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    useEffect(() => {
+        const getData = async () => {
+            const usersData = await api.getUsers();
+            setUsers(usersData);
+        }
+        getData();
+    });
+
     const logInAs = (event) => {
         event.preventDefault()
         const enteredUsername = event.target[0].value;
-        setUser(() => {
-            return enteredUsername;
+        const userInfo = users.find((user) => {
+            return user.username === enteredUsername;
         });
-        handleClose()
+        if(userInfo) {
+            setUser(() => {
+                return enteredUsername;
+            });
+            handleClose()
+        } else {
+            setErrorMessage(`Sorry, but it looks like we can't find that username.`)
+        }
     }
 
     return (
@@ -29,6 +47,7 @@ const UserLogIn = () => {
                         <br />
                         <Button variant="contained" type="submit">Submit</Button>
                     </form>
+                    <Typography variant="subtitle2">{errorMessage}</Typography>
                 </Box>
             </Modal>
         </section>
