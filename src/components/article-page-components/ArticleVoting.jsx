@@ -13,62 +13,121 @@ const ArticleVoting = ({ article, message, setMessage }) => {
     //voteCount optimistically rendered
     const [voteCount, setVoteCount] = useState(article.votes);
 
-    const [downvoteColour, setDownvoteColour] = useState('lightgrey');
-    const [upvoteColour, setUpvoteColour] = useState('lightgrey');
+    const neutral = 'lightgrey';
+    const votedUp = '#07B094';
+    const votedDown = '#AF3D33';
+
+    //userVotes to be array of users already voted with boolean of whether voted up or down
+    const [userVotes, setUserVotes] = useState([]);
+    const [downvoteColour, setDownvoteColour] = useState(neutral);
+    const [upvoteColour, setUpvoteColour] = useState(neutral);
 
     useEffect(() => {
         setVoteCount(article.votes);
     }, [article.votes]);
 
+    useEffect(() => {
+        setUpvoteColour(neutral);
+        setDownvoteColour(neutral);
+        const userVote = userVotes.find(voter => voter.user === user)
+        if(userVote) {
+            if(userVote.voteUp) {
+                setUpvoteColour(votedUp);
+            } else {
+                setDownvoteColour(votedDown);
+            }
+        }
+    }, [user, userVotes]);
+
     const incrementVote = () => {
         setVoteCount((currCount) => currCount + 1);
-        setUpvoteColour('#07B094');
+        setUserVotes((currVotes) => {
+            const newVotes = currVotes.map((voterObj) => {
+                return {...voterObj};
+            });
+            newVotes.push({ user, voteUp: true})
+            return newVotes;
+        })
         api.changeArticleVotes(articleId, 1);
     };
 
     const changeVoteUpToDown = () => {
         setVoteCount((currCount) => currCount - 2);
-        setUpvoteColour('lightgrey');
-        setDownvoteColour('#AF3D33');
+        setUserVotes((currVotes) => {
+            const newVotes = currVotes.map((voterObj) => {
+                if(voterObj.user === user) {
+                    return { user, voteUp: false}
+                } else {
+                    return { ...voterObj };
+                }
+            })
+            return newVotes;
+        })
         api.changeArticleVotes(articleId, -2);
     };
 
     const changeVoteUpToNeutral = () => {
         setVoteCount((currCount) => currCount - 1);
-        setUpvoteColour('lightgrey');
+        setUserVotes((currVotes) => {
+            const newVotes = currVotes.map((voterObj) => {
+                    return { ...voterObj }
+            })
+            return newVotes.filter((voterObj) => {
+                return voterObj.user !== user;
+            });
+        })
         api.changeArticleVotes(articleId, -1);
     };
 
     const decrementVote = () => {
         setVoteCount((currCount) => currCount - 1);
-        setDownvoteColour('#AF3D33');
+        setUserVotes((currVotes) => {
+            const newVotes = currVotes.map((voterObj) => {
+                return {...voterObj};
+            });
+            newVotes.push({ user, voteUp: false})
+            return newVotes;
+        })
         api.changeArticleVotes(articleId, -1);
     };
 
     const changeVoteDownToUp = () => {
         setVoteCount((currCount) => currCount + 2);
-        setDownvoteColour('lightgrey');
-        setUpvoteColour('#07B094');
+        setUserVotes((currVotes) => {
+            const newVotes = currVotes.map((voterObj) => {
+                if(voterObj.user === user) {
+                    return { user, voteUp: true}
+                } else {
+                    return { ...voterObj };
+                }
+            })
+            return newVotes;
+        })
         api.changeArticleVotes(articleId, 2);
     };
 
     const changeVoteDownToNeutral = () => {
         setVoteCount((currCount) => currCount + 1);
-        setDownvoteColour('lightgrey');
+        setUserVotes((currVotes) => {
+            const newVotes = currVotes.map((voterObj) => {
+                    return { ...voterObj }
+            })
+            return newVotes.filter((voterObj) => {
+                return voterObj.user !== user;
+            });
+        })
         api.changeArticleVotes(articleId, 1);
     };
 
     const upvoteClick = () => {
         if(user) {
             setMessage('');
-            if(upvoteColour === '#07B094') {
+            if(downvoteColour === votedDown) {
+                changeVoteDownToUp();
+            } else if(upvoteColour === votedUp) {
                 changeVoteUpToNeutral();
             } else {
-                if(downvoteColour === '#AF3D33') {
-                    changeVoteDownToUp();
-                } else {
-                    incrementVote();
-                }
+                incrementVote();
             }
         } else {
             setMessage('You must be logged in as a user to vote.')
@@ -78,14 +137,12 @@ const ArticleVoting = ({ article, message, setMessage }) => {
     const downvoteClick = () => {
         if(user) {
             setMessage('');
-            if(downvoteColour === '#AF3D33') {
+            if(upvoteColour === votedUp) {
+                changeVoteUpToDown();
+            } else if (downvoteColour === votedDown) {
                 changeVoteDownToNeutral();
             } else {
-                if(upvoteColour === '#07B094') {
-                    changeVoteUpToDown();
-                } else {
-                    decrementVote();
-                }
+                decrementVote();
             }
         } else {
             setMessage('You must be logged in as a user to vote.')

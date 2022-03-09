@@ -11,7 +11,9 @@ const UserLogIn = () => {
     const logInAs = (event) => {
         event.preventDefault()
         const enteredUsername = event.target[0].value;
-        setUser(enteredUsername);
+        setUser(() => {
+            return enteredUsername;
+        });
         handleClose()
     }
 
