@@ -8,8 +8,10 @@ const CommentsList = ({ articleId }) => {
 
     useEffect(() => {
         const getData = async () => {
-            const commentsData = await api.getComments(articleId);
-            setComments(commentsData);
+            if(articleId) {
+                const commentsData = await api.getComments(articleId);
+                setComments(commentsData);
+            }
         }
         getData()
     }, [articleId]);

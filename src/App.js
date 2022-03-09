@@ -9,12 +9,16 @@ import ArticlePage from './components/article-page-components/ArticlePage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { UserContext } from './contexts/UserContext';
+import { ThemeProvider } from '@mui/system';
+
+import theme from './theme';
 
 function App() {
   const [user, setUser] = useState('');
 
   return (
     <BrowserRouter>
+    <ThemeProvider theme={theme}>
     <UserContext.Provider value={{user, setUser}}>
       <div className="App">
         <Header />
@@ -29,6 +33,7 @@ function App() {
         <Footer />
       </div>
     </UserContext.Provider>
+    </ThemeProvider>
     </BrowserRouter>
   );
 };
