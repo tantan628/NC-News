@@ -19,6 +19,9 @@ const CommentCard = ({ comment }) => {
                 <Grid item xs={5}>
                     <Typography variant="caption">{publishedDate}</Typography>
                 </Grid>
+                <Grid item xs={2}>
+                    <p>delete button here</p>
+                </Grid>
             </Grid>
             </Card>
         </Grid>
