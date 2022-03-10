@@ -19,7 +19,11 @@ const PostComment = ({ articleId, setComments }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if(user && commentBody !== '') {
+        if(!user) {
+            setErrorMessage('You must be logged in to comment.');
+        } else if (commentBody === '') {
+            setErrorMessage('It looks like your comment is empty.');
+        } else {
             const postedComment = await api.postComment(articleId, user, commentBody);
             setComments((currComments) => {
                 const newComments = currComments.map((comment) => {
@@ -29,10 +33,6 @@ const PostComment = ({ articleId, setComments }) => {
                 return newComments;
             });
             setCommentBody('');
-        } else if(!user) {
-            setErrorMessage('You must be logged in to comment.')
-        } else {
-            setErrorMessage('It looks like your comment is empty.')
         }
     };
 
