@@ -3,9 +3,15 @@ import axios from 'axios';
 const baseUrl = "https://tanisnewsapi.herokuapp.com/api";
 
 export const getTopics = async () => {
-    let requestUrl = `${baseUrl}/topics`;
+    const requestUrl = `${baseUrl}/topics`;
     const { data } = await axios.get(requestUrl);
     return data.topics;
+};
+
+export const getUsers = async () => {
+    const requestUrl = `${baseUrl}/users`;
+    const { data } = await axios.get(requestUrl);
+    return data.users;
 };
 
 export const getArticles = async (chosenTopic) => {
@@ -37,4 +43,15 @@ export const getComments = async (articleId) => {
     const requestUrl = `${baseUrl}/articles/${articleId}/comments`;
     const { data } = await axios.get(requestUrl);
     return data.comments;
+};
+
+export const postComment = async (articleId, user, commentBody) => {
+    console.log(articleId, user, commentBody)
+    const requestUrl = `${baseUrl}/articles/${articleId}/comments`;
+    const body = {
+        username: user,
+        body: commentBody
+    };
+    const { data } = await axios.post(requestUrl, body);
+    return data.comment;
 };

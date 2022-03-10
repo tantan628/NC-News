@@ -20,7 +20,6 @@ const ArticlePage = () => {
     }, [articleId])
 
     const publishedDate = new Date(article.created_at).toDateString().slice(3)
-    console.log(article)
 
     return (
         <Grid container spacing={1}>
@@ -50,7 +49,7 @@ const ArticlePage = () => {
             <Grid item xs={2}></Grid>
             <Grid item xs={8}>
                 <Typography variant="h6">Comments</Typography>
-                <CommentsList articleId={article.article_id}/>
+                <CommentsList articleId={articleId}/>
             </Grid>
             <Grid item xs={2}></Grid>
         </Grid>
