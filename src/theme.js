@@ -63,7 +63,7 @@ const theme = createTheme ({
 theme.typography.h1 = {
   fontWeight: 400,
   [theme.breakpoints.down('sm')]: {
-    fontSize: '2.5rem'
+    fontSize: '2rem'
   },
   [theme.breakpoints.between('sm', 'md')]: {
     fontSize: '3.1rem'

@@ -53,3 +53,19 @@
 .vote-up-icon {
   border-radius: 25px;
 }
+
+.home-icon {
+  transform: scale(1);
+}
+
+@media(min-width: 400px) {
+  .home-icon {
+    transform: scale(1.5);
+  }
+}
+
+@media(min-width: 600px) {
+  .home-icon {
+    transform: scale(2);
+  }
+}

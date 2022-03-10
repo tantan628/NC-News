@@ -9,11 +9,11 @@ const Header = () => {
         <Box>
             <AppBar position="fixed">
             <Toolbar>
-                <Grid container>
+                <Grid container alignItems="center">
                     <Grid item xs={1}>
                     <Link to="/">
                     <IconButton size="large" aria-label="home">
-                        <HomeIcon />
+                        <HomeIcon className="home-icon" />
                     </IconButton>
                     </Link>
                     </Grid>
