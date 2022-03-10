@@ -2,6 +2,7 @@ import { UserContext } from '../../contexts/UserContext';
 import * as api from '../../api';
 import{ useState, useContext } from 'react';
 import { TextField, Button, Grid, Typography } from '@mui/material';
+import { HourglassEmpty } from '@mui/icons-material';
 
 const PostComment = ({ articleId, setComments }) => {
     const { user } = useContext(UserContext);
@@ -19,7 +20,7 @@ const PostComment = ({ articleId, setComments }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        if(user) {
+        if(user && commentBody !== '') {
             const postedComment = await api.postComment(articleId, user, commentBody);
             setComments((currComments) => {
                 const newComments = currComments.map((comment) => {
@@ -28,8 +29,10 @@ const PostComment = ({ articleId, setComments }) => {
                 newComments.unshift(postedComment);
                 return newComments;
             });
-        } else {
+        } else if(!user) {
             setErrorMessage('You must be logged in to comment.')
+        } else {
+            setErrorMessage('It looks like your comment is empty.')
         }
     };
 
