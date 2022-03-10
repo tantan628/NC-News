@@ -4,16 +4,16 @@ import * as api from '../../api';
 
 import ArticleCard from './ArticleCard';
 
-const ArticlesList = ({ chosenTopic }) => {
+const ArticlesList = ({ chosenTopic, chosenSorting, chosenOrder }) => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
         const getData = async () => {
-            const articlesData = await api.getArticles(chosenTopic);
+            const articlesData = await api.getArticles(chosenTopic, chosenSorting, chosenOrder);
             setArticles(articlesData);
         }
         getData();
-    }, [chosenTopic]);
+    }, [chosenTopic, chosenSorting, chosenOrder]);
 
 
     return (

@@ -19,7 +19,7 @@ const UserLogIn = () => {
         }
         getData();
         setUser('testing');
-    });
+    }, [setUser]);
 
     const handleChange = (event) => {
         setUsername(event.target.value);
