@@ -22,7 +22,7 @@ const CommentsList = ({ articleId }) => {
             <PostComment articleId={articleId} setComments={setComments} />
             <Grid container spacing={2}>
                 {comments.map((comment) => {
-                    return <CommentCard comment={comment} key={comment.comment_id} />
+                    return <CommentCard comment={comment} key={comment.comment_id} setComments={setComments} />
                 })}
             </Grid>
         </Box>

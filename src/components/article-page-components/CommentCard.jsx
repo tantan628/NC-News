@@ -1,6 +1,7 @@
 import { Card, Grid, Typography } from "@mui/material"
+import DeleteComment from "./DeleteComment";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comment, setComments }) => {
     const publishedDate = new Date(comment.created_at).toDateString().slice(3)
 
     return (
@@ -20,7 +21,7 @@ const CommentCard = ({ comment }) => {
                     <Typography variant="caption">{publishedDate}</Typography>
                 </Grid>
                 <Grid item xs={2}>
-                    <p>delete button here</p>
+                    <DeleteComment comment={comment} setComments={setComments} />
                 </Grid>
             </Grid>
             </Card>
