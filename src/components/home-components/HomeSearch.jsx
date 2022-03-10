@@ -1,6 +1,6 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, Grid, Switch, FormControlLabel } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams, createSearchParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import * as api from '../../api';
 
 import ArticlesList from "./ArticlesList";
@@ -34,20 +34,20 @@ const HomeSearch = () => {
     const handleSortingChange = (event) => {
         const newSorting = event.target.value;
         setSearchParams(
-            createSearchParams({
+            {
                 sort_by: newSorting,
                 order: searchParams.get('order') ? searchParams.get('order') : 'desc'
-            })
+            }
         )
     };
 
     const handleOrderChange = (event) => {
         const newOrder = event.target.checked ? 'desc' : 'asc';
         setSearchParams(
-            createSearchParams({
+            {
                 sort_by: searchParams.get('sort_by') ? searchParams.get('sort_by') : 'created_at',
                 order: newOrder
-            })
+            }
         )
     }
 
@@ -79,7 +79,7 @@ const HomeSearch = () => {
                     </FormControl>
             </Box>
             <Box className="topics-selector-container">
-                <FormControlLabel control={<Switch defaultChecked onChange={handleOrderChange}/>} label={searchParams.get('order') === 'desc' ? 'Descending' : 'Ascending'} />
+                <FormControlLabel control={<Switch checked={searchParams.get('order') === 'desc'} onChange={handleOrderChange}/>} label={searchParams.get('order') === 'desc' ? 'Descending' : 'Ascending'} />
             </Box>
             <ArticlesList chosenTopic={chosenTopic} chosenSorting={searchParams.get('sort_by')} chosenOrder={searchParams.get('order')} />
         </Grid>

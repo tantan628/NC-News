@@ -150,14 +150,15 @@ const ArticleVoting = ({ article, message, setMessage }) => {
     };
 
     return (
-        <Grid container spacing={0}>
+        <Grid container spacing={{ xs: 1, sm: 2}}>
             <Grid item xs={4}>
                 <IconButton aria-label="vote down" onClick={downvoteClick}>
                     <ArrowCircleDownRoundedIcon className="vote-up-icon" sx={{backgroundColor: downvoteColour}}/>
                 </IconButton>
             </Grid>
             <Grid item xs={4}>
-                <Typography variant="subtitle1">Votes: {voteCount} </Typography>
+                <Typography variant="subtitle1">Votes:</Typography>
+                <Typography variant="subtitle1">{voteCount}</Typography>
             </Grid>
             <Grid item xs={4}>
                 <IconButton aria-label="vote up" onClick={upvoteClick}>

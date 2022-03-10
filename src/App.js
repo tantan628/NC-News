@@ -12,6 +12,7 @@ import { UserContext } from './contexts/UserContext';
 import { ThemeProvider } from '@mui/system';
 
 import theme from './theme';
+import { Toolbar } from '@mui/material';
 
 function App() {
   const [user, setUser] = useState('');
@@ -22,6 +23,7 @@ function App() {
     <UserContext.Provider value={{user, setUser}}>
       <div className="App">
         <Header />
+        <Toolbar />
         <section className="main-element-container">
         <Routes>
           <Route path="/" element={<Home />} />
