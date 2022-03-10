@@ -61,14 +61,15 @@ const theme = createTheme ({
 });
 
 theme.typography.h1 = {
+  fontWeight: 400,
   [theme.breakpoints.down('sm')]: {
-    fontSize: '2.5rem'
+    fontSize: '2rem'
   },
   [theme.breakpoints.between('sm', 'md')]: {
-    fontSize: '3.2rem'
+    fontSize: '3.1rem'
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '4rem'
+    fontSize: '3.5rem'
   }
 }
 
@@ -93,6 +94,7 @@ theme.typography.h3 = {
 }
 
 theme.typography.subtitle1 = {
+  fontWeight: 400,
   fontSize: '1rem'
 }
 

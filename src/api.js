@@ -14,11 +14,13 @@ export const getUsers = async () => {
     return data.users;
 };
 
-export const getArticles = async (chosenTopic) => {
+export const getArticles = async (chosenTopic, chosenSorting, chosenOrder) => {
     const requestUrl = `${baseUrl}/articles`;
     const { data } = await axios.get(requestUrl, {
         params: {
-            topic: chosenTopic
+            topic: chosenTopic,
+            sort_by: chosenSorting,
+            order: chosenOrder
         }
     });
     return data.articles;

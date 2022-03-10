@@ -19,7 +19,7 @@ const UserLogIn = () => {
         }
         getData();
         setUser('testing');
-    });
+    }, [setUser]);
 
     const handleChange = (event) => {
         setUsername(event.target.value);
@@ -43,8 +43,8 @@ const UserLogIn = () => {
 
     return (
         <section>
-            <Button color="inherit" variant="outlined" onClick={handleOpen}>Log In</Button>
-            <Typography variant="subtitle1">Current User: {user}</Typography>
+            <Button color="inherit" variant="outlined" size="small" onClick={handleOpen}>Log In</Button>
+            <Typography noWrap variant="subtitle1">Hello, {user}</Typography>
             <Modal open={open} onClose={handleClose}>
                 <Box className="modal-form-container">
                     <form onSubmit={logInAs}>

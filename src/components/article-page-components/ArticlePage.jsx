@@ -29,13 +29,13 @@ const ArticlePage = () => {
             <Grid item xs={12}>
                 <Typography variant="h2">{article.title}</Typography>
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={4} sm={5}>
                 <Typography variant="subtitle1">By: {article.author}</Typography>
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={4} sm={2}>
                 <ArticleVoting article={article} message={message} setMessage={setMessage} />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item xs={4} sm={5}>
                 <Typography variant="subtitle1">Published: {publishedDate}</Typography>
             </Grid>
             <Grid item xs={12}>
