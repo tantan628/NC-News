@@ -21,17 +21,6 @@ const theme = createTheme ({
         },
         divider: 'rgba(0,0,0,0.12)',
       },
-      typography: {
-        h1: {
-          fontSize: '4rem',
-        },
-        h2: {
-          fontSize: '3rem',
-        },
-        h3: {
-          fontSize: '2.5rem',
-        },
-      },
       props: {
         MuiTooltip: {
           arrow: true,
@@ -70,5 +59,41 @@ const theme = createTheme ({
         },
       }
 });
+
+theme.typography.h1 = {
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '2.5rem'
+  },
+  [theme.breakpoints.between('sm', 'md')]: {
+    fontSize: '3.2rem'
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '4rem'
+  }
+}
+
+theme.typography.h2 = {
+  fontSize: '2rem',
+  [theme.breakpoints.between('sm', 'md')]: {
+    fontSize: '2.4rem'
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '3rem'
+  }
+}
+
+theme.typography.h3 = {
+  fontSize: '1.5rem',
+  [theme.breakpoints.between('sm', 'md')]: {
+    fontSize: '1.8rem'
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '2rem'
+  }
+}
+
+theme.typography.subtitle1 = {
+  fontSize: '1rem'
+}
 
 export default theme;

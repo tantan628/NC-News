@@ -5,6 +5,7 @@ import * as api from '../api';
 
 const UserLogIn = () => {
     const [users, setUsers] = useState([]);
+    const [username, setUsername] = useState('testing');
     const [errorMessage, setErrorMessage] = useState('');
     const { user, setUser } = useContext(UserContext);
     const [open, setOpen] = useState(false);
@@ -17,7 +18,12 @@ const UserLogIn = () => {
             setUsers(usersData);
         }
         getData();
+        setUser('testing');
     });
+
+    const handleChange = (event) => {
+        setUsername(event.target.value);
+    };
 
     const logInAs = (event) => {
         event.preventDefault()
@@ -43,7 +49,7 @@ const UserLogIn = () => {
                 <Box className="modal-form-container">
                     <form onSubmit={logInAs}>
                         <InputLabel id="username-input">Username:</InputLabel>
-                        <TextField variant="outlined" label="Username" labelid="username-input" />
+                        <TextField variant="outlined" label="Username" labelid="username-input" value={username} onChange={handleChange} />
                         <br />
                         <Button variant="contained" type="submit">Submit</Button>
                     </form>
