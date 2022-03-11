@@ -13,7 +13,7 @@ const ErrorComponent = ({ error:{ err }, setError }) => {
     const backToHome = () => {
         setError(null);
         navigate('/');
-    }
+    };
 
     return (
         <Box>

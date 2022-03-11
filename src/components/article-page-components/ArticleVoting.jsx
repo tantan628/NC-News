@@ -44,35 +44,35 @@ const ArticleVoting = ({ article, message, setMessage }) => {
         }
     }, [user, userVotes]);
 
-    const incrementVote = () => {
-        setVoteCount((currCount) => currCount + 1);
+    const incrementVote = (inc_value) => {
+        setVoteCount((currCount) => currCount + inc_value);
         setUserVotes((currVotes) => {
             const newVotes = currVotes.map((voterObj) => {
                 return {...voterObj};
             });
-            newVotes.push({ user, voteUp: true})
+            newVotes.push({ user, voteUp: inc_value > 0})
             return newVotes;
         })
-        api.changeArticleVotes(articleId, 1);
+        api.changeArticleVotes(articleId, inc_value);
     };
 
-    const changeVoteUpToDown = () => {
-        setVoteCount((currCount) => currCount - 2);
+    const switchVote = (inc_value) => {
+        setVoteCount((currCount) => currCount + inc_value);
         setUserVotes((currVotes) => {
             const newVotes = currVotes.map((voterObj) => {
                 if(voterObj.user === user) {
-                    return { user, voteUp: false}
+                    return { user, voteUp: inc_value > 0}
                 } else {
                     return { ...voterObj };
                 }
             })
             return newVotes;
         })
-        api.changeArticleVotes(articleId, -2);
+        api.changeArticleVotes(articleId, inc_value);
     };
 
-    const changeVoteUpToNeutral = () => {
-        setVoteCount((currCount) => currCount - 1);
+    const changeVoteToNeutral = (inc_value) => {
+        setVoteCount((currCount) => currCount + inc_value);
         setUserVotes((currVotes) => {
             const newVotes = currVotes.map((voterObj) => {
                     return { ...voterObj }
@@ -81,58 +81,18 @@ const ArticleVoting = ({ article, message, setMessage }) => {
                 return voterObj.user !== user;
             });
         })
-        api.changeArticleVotes(articleId, -1);
-    };
-
-    const decrementVote = () => {
-        setVoteCount((currCount) => currCount - 1);
-        setUserVotes((currVotes) => {
-            const newVotes = currVotes.map((voterObj) => {
-                return {...voterObj};
-            });
-            newVotes.push({ user, voteUp: false})
-            return newVotes;
-        })
-        api.changeArticleVotes(articleId, -1);
-    };
-
-    const changeVoteDownToUp = () => {
-        setVoteCount((currCount) => currCount + 2);
-        setUserVotes((currVotes) => {
-            const newVotes = currVotes.map((voterObj) => {
-                if(voterObj.user === user) {
-                    return { user, voteUp: true}
-                } else {
-                    return { ...voterObj };
-                }
-            })
-            return newVotes;
-        })
-        api.changeArticleVotes(articleId, 2);
-    };
-
-    const changeVoteDownToNeutral = () => {
-        setVoteCount((currCount) => currCount + 1);
-        setUserVotes((currVotes) => {
-            const newVotes = currVotes.map((voterObj) => {
-                    return { ...voterObj }
-            })
-            return newVotes.filter((voterObj) => {
-                return voterObj.user !== user;
-            });
-        })
-        api.changeArticleVotes(articleId, 1);
+        api.changeArticleVotes(articleId, inc_value);
     };
 
     const upvoteClick = () => {
         if(user) {
             setMessage('');
             if(downvoteColour === votedDown) {
-                changeVoteDownToUp();
+                switchVote(2);
             } else if(upvoteColour === votedUp) {
-                changeVoteUpToNeutral();
+                changeVoteToNeutral(-1);
             } else {
-                incrementVote();
+                incrementVote(1);
             }
         } else {
             setMessage('You must be logged in as a user to vote.')
@@ -143,11 +103,11 @@ const ArticleVoting = ({ article, message, setMessage }) => {
         if(user) {
             setMessage('');
             if(upvoteColour === votedUp) {
-                changeVoteUpToDown();
+                switchVote(-2);
             } else if (downvoteColour === votedDown) {
-                changeVoteDownToNeutral();
+                changeVoteToNeutral(1);
             } else {
-                decrementVote();
+                incrementVote(-1);
             }
         } else {
             setMessage('You must be logged in as a user to vote.')
