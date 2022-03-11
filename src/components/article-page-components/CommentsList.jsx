@@ -1,6 +1,7 @@
 //IMPORTS - Components
 import CommentCard from "./CommentCard";
 import PostComment from "./PostComment";
+import ErrorComponent from "../ErrorComponent";
 
 //IMPORTS - React
 import { useEffect, useState } from "react";
@@ -14,17 +15,24 @@ import * as api from '../../api';
 //-----------COMPONENT-----------
 const CommentsList = ({ articleId }) => {
     const[comments, setComments] = useState([]);
+    const[error, setError] = useState(null);
 
     useEffect(() => {
         const getData = async () => {
-            if(articleId) {
+            try {
                 const commentsData = await api.getComments(articleId);
                 setComments(commentsData);
+            } catch(err) {
+                setError({ err });
             }
         }
         getData()
     }, [articleId]);
 
+    if(error) {
+        return <ErrorComponent error={error} setError={setError} />
+    }
+    
     return (
         <Box className="comments-list-container">
             <PostComment articleId={articleId} setComments={setComments} />
