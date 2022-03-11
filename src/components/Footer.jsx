@@ -1,5 +1,7 @@
+//IMPORTS - Mui
 import { Typography } from '@mui/material';
 
+//-----------COMPONENT-----------
 const Footer = () => {
 
     return (

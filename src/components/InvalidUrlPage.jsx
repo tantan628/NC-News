@@ -1,6 +1,10 @@
+//IMPORTS - React
 import { useNavigate } from 'react-router-dom';
+
+//IMPORTS - Mui
 import { Typography, Button } from '@mui/material';
 
+//---------COMPONENT---------
 const InvalidUrlPage = () => {
     const navigate = useNavigate()
     const backToHome = () => {

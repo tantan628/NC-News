@@ -1,8 +1,14 @@
-import { AppBar, Toolbar, Typography, Box, IconButton, Grid } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import { Link } from 'react-router-dom';
+//IMPORTS - Components
 import UserLogIn from './UserLogIn';
 
+//IMPORTS - React
+import { Link } from 'react-router-dom';
+
+//IMPORTS - Mui
+import { AppBar, Toolbar, Typography, Box, IconButton, Grid } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+
+//----------COMPONENT---------
 const Header = () => {
 
     return (

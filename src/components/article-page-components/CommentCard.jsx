@@ -1,6 +1,10 @@
-import { Card, Grid, Typography } from "@mui/material"
+//IMPORTS - Components
 import DeleteComment from "./DeleteComment";
 
+//IMPORTS - Mui
+import { Card, Grid, Typography } from "@mui/material"
+
+//-----------COMPONENT-----------
 const CommentCard = ({ comment, setComments }) => {
     const publishedDate = new Date(comment.created_at).toDateString().slice(3)
 

@@ -1,9 +1,20 @@
-import { Box, Typography } from "@mui/material";
+//IMPORTS - React
+import { useNavigate } from 'react-router-dom';
 
-const ErrorComponent = ({ error:{ err } }) => {
+//IMPORTS - Mui
+import { Box, Button, Typography } from "@mui/material";
+
+//-----------COMPONENT-----------
+const ErrorComponent = ({ error:{ err }, setError }) => {
     const msg = err.response.data.msg;
     const status = err.request.status;
-    console.log(msg)
+
+    const navigate = useNavigate()
+    const backToHome = () => {
+        setError(null);
+        navigate('/');
+    }
+
     return (
         <Box>
             <Typography variant="h3">
@@ -15,6 +26,8 @@ const ErrorComponent = ({ error:{ err } }) => {
             <Typography>
                 {msg}
             </Typography>
+            <br />
+            <Button variant="contained" onClick={backToHome} color="success">Back to Safety</Button>
             <div className="divider-below-errors"/>
         </Box>
     )

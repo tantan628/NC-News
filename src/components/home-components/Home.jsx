@@ -1,7 +1,10 @@
+//IMPORTS - Components
 import HomeSearch from './HomeSearch';
 
+//IMPORTS - Mui
 import { Typography } from '@mui/material';
 
+//-----------COMPONENT-----------
 const Home = () => {
     return (
         <div className="App">

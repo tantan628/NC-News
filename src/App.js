@@ -1,19 +1,25 @@
-import './App.css';
-import '@fontsource/roboto/300.css';
+//IMPORTS - Components
 import Home from './components/home-components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import InvalidUrlPage from './components/InvalidUrlPage';
 import ArticlePage from './components/article-page-components/ArticlePage';
 
+//IMPORTS - React
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useState } from 'react';
 import { UserContext } from './contexts/UserContext';
-import { ThemeProvider } from '@mui/system';
 
+//IMPORTS - Styling and Mui
+import './App.css';
+import '@fontsource/roboto/300.css';
+
+import { ThemeProvider } from '@mui/system';
 import theme from './theme';
 import { Toolbar } from '@mui/material';
 
+
+//----------APP----------
 function App() {
   const [user, setUser] = useState('');
 

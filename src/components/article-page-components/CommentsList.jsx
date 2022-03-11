@@ -1,9 +1,17 @@
-import { Box, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+//IMPORTS - Components
 import CommentCard from "./CommentCard";
 import PostComment from "./PostComment";
+
+//IMPORTS - React
+import { useEffect, useState } from "react";
+
+//IMPORTS - Mui
+import { Box, Grid } from "@mui/material";
+
+//IMPORTS - Api
 import * as api from '../../api';
 
+//-----------COMPONENT-----------
 const CommentsList = ({ articleId }) => {
     const[comments, setComments] = useState([]);
 

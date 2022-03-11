@@ -1,10 +1,15 @@
-import { IconButton, Modal, Typography, Button, Box } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
-import * as api from '../../api';
+//IMPORTS - React
 import { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 
+//IMPORTS - Mui
+import { IconButton, Modal, Typography, Button, Box } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
+//IMPORTS - Api
+import * as api from '../../api';
+
+//-----------COMPONENT-----------
 const DeleteComment = ({ comment, setComments }) => {
     const [open, setOpen] = useState(false);
     const [displayIcon, setDisplayIcon] = useState('none');

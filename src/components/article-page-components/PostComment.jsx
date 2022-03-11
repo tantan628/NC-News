@@ -1,8 +1,14 @@
+//IMPORTS - React
 import { UserContext } from '../../contexts/UserContext';
-import * as api from '../../api';
 import{ useState, useContext } from 'react';
+
+//IMPORTS - Mui
 import { TextField, Button, Grid, Typography } from '@mui/material';
 
+//IMPORTS - Api
+import * as api from '../../api';
+
+//-----------COMPONENT-----------
 const PostComment = ({ articleId, setComments }) => {
     const { user } = useContext(UserContext);
     const [buttonDisplayValue, setButtonDisplayValue] = useState('none');

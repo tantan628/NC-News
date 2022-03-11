@@ -1,17 +1,24 @@
-import { Typography, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
-import * as api from '../../api';
+//IMPORTS - Components
 import ErrorComponent from "../ErrorComponent";
 import ArticleVoting from "./ArticleVoting";
 import CommentsList from "./CommentsList";
 
+//IMPORTS - React
+import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
+
+//IMPORTS - Mui
+import { Typography, Grid } from "@mui/material";
+
+//IMPORTS - Api
+import * as api from '../../api';
+
+//-----------COMPONENT-----------
 const ArticlePage = () => {
     const [error, setError] = useState(null);
     const [article, setArticle] = useState({});
-    const { articleId } = useParams();
-
     const [message, setMessage] = useState('');
+    const { articleId } = useParams();
 
     useEffect(() => {
         const getData = async () => {
@@ -26,7 +33,7 @@ const ArticlePage = () => {
     }, [articleId])
 
     if(error) {
-        return <ErrorComponent error={error} />
+        return <ErrorComponent error={error} setError={setError} />
     }
 
     const publishedDate = new Date(article.created_at).toDateString().slice(3)

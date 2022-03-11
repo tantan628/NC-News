@@ -1,8 +1,14 @@
+//IMPORTS - React
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from '../contexts/UserContext';
+
+//IMPORTS - Mui
 import { Box, Button, InputLabel, Modal, TextField, Typography } from '@mui/material';
+
+//IMPORTS - Api
 import * as api from '../api';
 
+//-----------COMPONENT-----------
 const UserLogIn = () => {
     const [users, setUsers] = useState([]);
     const [username, setUsername] = useState('testing');

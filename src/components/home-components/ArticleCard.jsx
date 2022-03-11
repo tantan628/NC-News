@@ -1,6 +1,10 @@
-import { ButtonBase, Card, CardContent, Grid, Typography } from "@mui/material";
+//IMPORTS - React
 import { Link } from "react-router-dom";
 
+//IMPORTS - Mui
+import { ButtonBase, Card, CardContent, Grid, Typography } from "@mui/material";
+
+//-----------COMPONENT-----------
 const ArticleCard = (article) => {
     const publishedDate = new Date(article.created_at).toDateString().slice(3)
 

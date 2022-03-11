@@ -1,11 +1,16 @@
+//IMPORTS - React
+import { useEffect, useState, useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
+
+//IMPORTS - Mui
 import ArrowCircleDownRoundedIcon from '@mui/icons-material/ArrowCircleDownRounded';
 import ArrowCircleUpRoundedIcon from '@mui/icons-material/ArrowCircleUpRounded';
 import { IconButton, Typography, Grid } from '@mui/material';
-import { useEffect, useState, useContext } from 'react';
+
+//IMPORTS - Api
 import * as api from '../../api';
-import { UserContext } from '../../contexts/UserContext';
 
-
+//-----------COMPONENT-----------
 const ArticleVoting = ({ article, message, setMessage }) => {
     const articleId = article.article_id;
     const { user } = useContext(UserContext);

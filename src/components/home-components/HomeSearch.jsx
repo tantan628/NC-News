@@ -1,38 +1,47 @@
-import { Box, FormControl, InputLabel, MenuItem, Select, Grid, Switch, FormControlLabel } from "@mui/material";
-import { useState, useEffect } from "react";
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import * as api from '../../api';
-
+//IMPORTS - Components
+import ErrorComponent from "../ErrorComponent";
 import ArticlesList from "./ArticlesList";
 
+//IMPORTS - React
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+
+//IMPORTS - Mui
+import { Box, FormControl, InputLabel, MenuItem, Select, Grid, Switch, FormControlLabel } from "@mui/material";
+
+//IMPORTS - Api
+import * as api from '../../api';
+
+//-----------COMPONENT-----------
 const HomeSearch = () => {
     const { topicSlug } = useParams();
     const [chosenTopic, setChosenTopic] = useState(topicSlug);
     const [searchParams, setSearchParams] = useSearchParams();
     const [topics, setTopics] = useState([]);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getData = async () => {
-            const topicsData = await api.getTopics();
-            setTopics(topicsData);
+            try {
+                const topicsData = await api.getTopics();
+                setTopics(topicsData);
+            } catch (err) {
+                setError({ err })
+            }
         }
         getData();
     }, []);
-
-    const navigate = useNavigate();
+    
     const handleTopicChange = (event) => {
         const newTopic = event.target.value
-        if(newTopic === "All Topics") {
-            setChosenTopic(null)
-            navigate('/')
-        } else {
+        if(newTopic !== "All Topics") {
             setChosenTopic(newTopic);
             navigate(`/topics/${newTopic}`)
+        } else {
+            setChosenTopic(null)
+            navigate(`/`)
         }
-        setSearchParams({
-            sort_by: searchParams.get('sort_by') ? searchParams.get('sort_by') : 'created_at',
-            order: searchParams.get('order') ? searchParams.get('order') : 'desc'
-        })
     };
 
     const handleSortingChange = (event) => {
@@ -55,6 +64,10 @@ const HomeSearch = () => {
         )
     }
 
+    if(error) {
+        return <ErrorComponent error={error} />
+    }
+
     return (
         <Grid container className="search-container">
             <Box className="topics-selector-container">
@@ -64,7 +77,9 @@ const HomeSearch = () => {
                         <MenuItem value="All Topics">All Topics</MenuItem>
                         {topics.map((topic) => {
                             return (
-                                <MenuItem value={topic.slug} key={topic.slug}>{topic.slug[0].toUpperCase() + topic.slug.slice(1)}</MenuItem>
+                                <MenuItem value={topic.slug} key={topic.slug}>
+                                        {topic.slug[0].toUpperCase() + topic.slug.slice(1)}
+                                </MenuItem>
                             )
                         })}
                     </Select>
@@ -85,7 +100,7 @@ const HomeSearch = () => {
             <Box className="topics-selector-container">
                 <FormControlLabel control={<Switch checked={searchParams.get('order') === 'desc' || !searchParams.get('order')} onChange={handleOrderChange}/>} label={searchParams.get('order') === 'desc' || !searchParams.get('order') ? 'Descending' : 'Ascending'} />
             </Box>
-            <ArticlesList chosenTopic={chosenTopic} chosenSorting={searchParams.get('sort_by')} chosenOrder={searchParams.get('order')} />
+            <ArticlesList chosenTopic={chosenTopic} chosenSorting={searchParams.get('sort_by')} chosenOrder={searchParams.get('order')} setChosenTopic={setChosenTopic} />
         </Grid>
     )
 };
