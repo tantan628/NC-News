@@ -56,7 +56,7 @@ const HomeSearch = () => {
     }
 
     return (
-        <Grid container>
+        <Grid container className="search-container">
             <Box className="topics-selector-container">
                 <FormControl className="topics-selector">
                     <InputLabel id="topics-selection-label">Topic</InputLabel>

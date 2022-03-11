@@ -2,10 +2,12 @@ import { Typography, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import * as api from '../../api';
+import ErrorComponent from "../ErrorComponent";
 import ArticleVoting from "./ArticleVoting";
 import CommentsList from "./CommentsList";
 
 const ArticlePage = () => {
+    const [error, setError] = useState(null);
     const [article, setArticle] = useState({});
     const { articleId } = useParams();
 
@@ -13,11 +15,19 @@ const ArticlePage = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const articleData = await api.getArticleById(articleId);
-            setArticle(articleData);
+            try{
+                const articleData = await api.getArticleById(articleId);
+                setArticle(articleData);
+            } catch (err) {
+                setError({ err })
+            }
         }
         getData();
     }, [articleId])
+
+    if(error) {
+        return <ErrorComponent error={error} />
+    }
 
     const publishedDate = new Date(article.created_at).toDateString().slice(3)
 

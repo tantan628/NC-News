@@ -35,7 +35,7 @@ const DeleteComment = ({ comment, setComments }) => {
 
     return (
         <section>
-            <IconButton aria-label="delete" color="error" onClick={handleOpen} sx={{ display: displayIcon}}>
+            <IconButton aria-label="delete" color="error" onClick={handleOpen} sx={{ display: displayIcon }}>
                 <DeleteIcon />
             </IconButton>
             <Modal open={open} onClose={handleClose}>

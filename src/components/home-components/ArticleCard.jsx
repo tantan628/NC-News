@@ -23,7 +23,7 @@ const ArticleCard = (article) => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <Typography variant="h5">
+                            <Typography variant="h3">
                             {article.title}
                             </Typography>
                         </Grid>
