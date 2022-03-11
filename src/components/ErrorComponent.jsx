@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 
 //IMPORTS - Mui
-import { Box, Button, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 //-----------COMPONENT-----------
 const ErrorComponent = ({ error:{ err }, setError }) => {
@@ -16,7 +16,7 @@ const ErrorComponent = ({ error:{ err }, setError }) => {
     };
 
     return (
-        <Box>
+        <section className="error-message-container">
             <Typography variant="h3">
                 Error
             </Typography>
@@ -28,8 +28,7 @@ const ErrorComponent = ({ error:{ err }, setError }) => {
             </Typography>
             <br />
             <Button variant="contained" onClick={backToHome} color="success">Back to Safety</Button>
-            <div className="divider-below-errors"/>
-        </Box>
+        </section>
     )
 };
 
