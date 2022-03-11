@@ -29,6 +29,10 @@ const HomeSearch = () => {
             setChosenTopic(newTopic);
             navigate(`/topics/${newTopic}`)
         }
+        setSearchParams({
+            sort_by: searchParams.get('sort_by') ? searchParams.get('sort_by') : 'created_at',
+            order: searchParams.get('order') ? searchParams.get('order') : 'desc'
+        })
     };
 
     const handleSortingChange = (event) => {
@@ -52,7 +56,7 @@ const HomeSearch = () => {
     }
 
     return (
-        <Grid container>
+        <Grid container className="search-container">
             <Box className="topics-selector-container">
                 <FormControl className="topics-selector">
                     <InputLabel id="topics-selection-label">Topic</InputLabel>
@@ -79,7 +83,7 @@ const HomeSearch = () => {
                     </FormControl>
             </Box>
             <Box className="topics-selector-container">
-                <FormControlLabel control={<Switch checked={searchParams.get('order') === 'desc'} onChange={handleOrderChange}/>} label={searchParams.get('order') === 'desc' ? 'Descending' : 'Ascending'} />
+                <FormControlLabel control={<Switch checked={searchParams.get('order') === 'desc' || !searchParams.get('order')} onChange={handleOrderChange}/>} label={searchParams.get('order') === 'desc' || !searchParams.get('order') ? 'Descending' : 'Ascending'} />
             </Box>
             <ArticlesList chosenTopic={chosenTopic} chosenSorting={searchParams.get('sort_by')} chosenOrder={searchParams.get('order')} />
         </Grid>

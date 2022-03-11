@@ -84,6 +84,7 @@ theme.typography.h2 = {
 }
 
 theme.typography.h3 = {
+  fontWeight: 300,
   fontSize: '1.5rem',
   [theme.breakpoints.between('sm', 'md')]: {
     fontSize: '1.8rem'
@@ -96,6 +97,12 @@ theme.typography.h3 = {
 theme.typography.subtitle1 = {
   fontWeight: 400,
   fontSize: '1rem'
+}
+
+theme.typography.subtitle2 = {
+  fontSize: '0.8rem',
+  fontWeight: 200,
+  marginTop: '5px'
 }
 
 export default theme;

@@ -48,7 +48,6 @@ export const getComments = async (articleId) => {
 };
 
 export const postComment = async (articleId, user, commentBody) => {
-    console.log(articleId, user, commentBody)
     const requestUrl = `${baseUrl}/articles/${articleId}/comments`;
     const body = {
         username: user,
@@ -56,4 +55,9 @@ export const postComment = async (articleId, user, commentBody) => {
     };
     const { data } = await axios.post(requestUrl, body);
     return data.comment;
+};
+
+export const deleteComment = async (commentId) => {
+    const requestUrl = `${baseUrl}/comments/${commentId}`;
+    await axios.delete(requestUrl);
 };

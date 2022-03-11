@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Typography, Button } from '@mui/material';
 
-const ErrorPage = () => {
+const InvalidUrlPage = () => {
     const navigate = useNavigate()
     const backToHome = () => {
         navigate('/')
@@ -17,4 +17,4 @@ const ErrorPage = () => {
     )
 };
 
-export default ErrorPage;
+export default InvalidUrlPage;

@@ -3,7 +3,7 @@ import '@fontsource/roboto/300.css';
 import Home from './components/home-components/Home';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ErrorPage from './components/ErrorPage';
+import InvalidUrlPage from './components/InvalidUrlPage';
 import ArticlePage from './components/article-page-components/ArticlePage';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/topics/:topicSlug" element={<Home />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={<InvalidUrlPage />} />
           <Route path="/articles/:articleId" element={<ArticlePage />} />
         </Routes>
         </section>
