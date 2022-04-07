@@ -34,9 +34,9 @@ const CommentsList = ({ articleId }) => {
     }
     
     return (
-        <Box className="comments-list-container">
+        <Box className="comments-list-container" sx={{ alignContent: "center" }}>
             <PostComment articleId={articleId} setComments={setComments} />
-            <Grid container spacing={2}>
+            <Grid container spacing={2} alignItems="center" justifyContent="center" direction="column">
                 {comments.map((comment) => {
                     return <CommentCard comment={comment} key={comment.comment_id} setComments={setComments} />
                 })}

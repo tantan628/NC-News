@@ -34,7 +34,7 @@ npm start
 The minimum version of node is:
 
 ``
-
+Node.js 17.0.0
 ``
 
 ## Back End

@@ -10,13 +10,10 @@ const CommentCard = ({ comment, setComments }) => {
 
     return (
         <Grid item xs={12}>
-            <Card raised={true}>
+            <Card raised={true} sx={{ maxWidth: 700, alignContent: "center" }}>
             <Grid container>
                 <Grid item xs={10}>
                     <Typography variant="body2">{comment.body}</Typography>
-                </Grid>
-                <Grid item xs={2}>
-                    <p>voting here</p>
                 </Grid>
                 <Grid item xs={5}>
                     <Typography variant="caption">{comment.author}</Typography>

@@ -38,7 +38,7 @@ const ArticlesList = ({ chosenTopic, chosenSorting, chosenOrder, setChosenTopic 
 
     return (
         <Box className="articles-list-container">
-            <Grid container spacing={2}>
+            <Grid container spacing={2} alignContent="center" justifyContent="center" direction="column">
                 {articles.map((article) => {
                     return ArticleCard(article);
                 })}

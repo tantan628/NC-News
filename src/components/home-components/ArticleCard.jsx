@@ -12,7 +12,7 @@ const ArticleCard = (article) => {
         <Grid item xs={12} key={article.article_id}>
             <Link to={`/articles/${article.article_id}`} className="article-card-linking">
             <ButtonBase sx={{ minWidth: '100%' }}>
-            <Card raised={true} sx={{ minWidth: '100%' }}>
+            <Card raised={true} sx={{ minWidth: 375, maxWidth: 800 }}>
                 <CardContent>
                     <Grid container>
                         <Grid item xs={4}></Grid>
